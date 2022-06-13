@@ -3,7 +3,7 @@
      * README
      * 
      * How to use:
-     * In the Settings column, separate parameters by pipe |
+     * In the Settings column, separate parameters by pipe | (need to have, or else an error will occur)
      * Parameters;
      *     submitOnDone
      *         set to false to prevent auto-submission upon video completion
@@ -59,7 +59,6 @@
     if (!isset($endTime)   OR !is_numeric($endTime)) { 
         $endTime   = 'na'; 
     }
-    
     // set parameters to append to the URL (https://developers.google.com/youtube/player_parameters)
     $parameters = array(
         'autoplay'       => 1,           // 1: starts the video immediately
