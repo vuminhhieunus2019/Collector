@@ -1305,14 +1305,13 @@ function stripUrlScheme($url)
 function youtubeUrlCleaner($url, $justReturnId = false)
 {
     $urlParts = parse_url(stripUrlScheme($url));
-    
     if ('youtu.be' === strtolower($urlParts['host'])) {
         // share links: youtu.be/[VIDEO ID]
         $id = ltrim($urlParts['path'], '/');
     } else if (stripos($urlParts['path'], 'watch') === 1) {
         // watch links: youtube.com/watch?v=[VIDEO ID]
-        parse_str($urlParts['query']); 
-        $id = $v;
+        parse_str($urlParts['query'], $output); 
+        $id = $output['v'];
     } else {
         // embed links: youtube.com/embed/[VIDEO ID]
         // API links: youtube.com/v/[VIDEO ID]

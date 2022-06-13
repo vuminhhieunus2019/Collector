@@ -30,7 +30,7 @@
         </section>
         
         
-        <section>
+        <!-- <section>
             <label>
                 <h3>Age</h3>
                 <input name="Age" class="wide collectorInput" type="text"
@@ -52,7 +52,7 @@
                     <option>Graduate degree (Masters, Doctorate, etc.)</option>
                 </select>
             </label>
-        </section>
+        </section> -->
         
         
         <!-- <section class="radioButtons">
@@ -62,7 +62,7 @@
         </section> -->
         
         
-        <section>
+        <!-- <section>
             <label>
                 <h3>Ethnicity</h3>
                 <select name="Race" required class="wide collectorInput">
@@ -109,7 +109,7 @@
                     and agree to the Informed Consent above.</span>
                 <input type="checkbox" name="consent" required/>
             </label>
-        </section>
+        </section> -->
         
         
         <section>

@@ -49,7 +49,6 @@
             $preventEarlySubmit = false;
         }
     }
-    
     // get video ID
     $videoId = youtubeUrlCleaner($cue, true);
     
@@ -70,22 +69,31 @@
         'showinfo'       => 0,           // 0: does not show info like title
         'iv_load_policy' => 3,           // 3: removes annotations
         'start'          => $startTime,  // start time in seconds
-        'end'            => $endTime     // end time in seconds
+        'end'            => $endTime,    // end time in seconds
+        'disablekb'      => 1,           // 1: disables keyboard controls
+        'fs'             => 0,           // 0: disables fullscreen
     );
     
 ?>
 
-<div class="textcenter">
+<style>
+    .ytplayer {pointer-events: none;}
+</style>
+
+<div>
     <div id="player"></div>
 </div>
 
 <!-- include form to collect RT and advance page -->
 <div><?php echo $text; ?></div>
-<div class="textcenter">
+<div>
     <button class="collectorButton collectorAdvance" id="FormSubmitButton">Next</button>
 </div>
 
 <script>
+    // set background color of recall question section to white
+    // document.getElementById("recallQ").style.background-color = "white";
+
     var player;
     var submitOnDone       = <?= $submitOnDone       ? 'true' : 'false' ?>;
     var preventEarlySubmit = <?= $preventEarlySubmit ? 'true' : 'false' ?>;
@@ -94,11 +102,11 @@
     
     function onYouTubeIframeAPIReady() {
         player = new YT.Player("player", {
-            height     : "315",
-            width      : "420",
+            height     : "585",
+            width      : "960",
             videoId    : "<?= $videoId ?>",
             events     : {
-                           "onStateChange" : onPlayerStateChange
+                             "onStateChange" : onPlayerStateChange
                          },
             playerVars : {
                            <?php
@@ -109,6 +117,8 @@
                          }
         });
     }
+    document.getElementById("player").style.display = "inline-block";
+    document.getElementById("player").style.margin = "0px -100px";
     
     function onPlayerStateChange(e) {
         if (e.data === YT.PlayerState.ENDED) {
@@ -119,6 +129,14 @@
                 $("#FormSubmitButton").removeClass("invisible");
             }
         }
+        if (e.data === YT.PlayerState.PAUSED) {
+            //continue the video
+            player.playVideo();
+        }
     }
+
 </script>
 <script src="https://www.youtube.com/iframe_api"></script>
+
+<!-- Set background color of webpage to black  -->
+<?php echo "<body style='background-color:black'>"; ?>
