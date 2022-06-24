@@ -3,12 +3,18 @@
      * README
      * 
      * How to use:
-     * In the Settings column, separate parameters by pipe | (need to have, or else an error will occur)
+     * In the Settings column, separate parameters by pipe |
      * Parameters;
      *     submitOnDone
      *         set to false to prevent auto-submission upon video completion
      *     preventEarlySubmit
      *         set to false to disable the submit button until video completion
+     * By default, after the video is played, it will automatically go to the next page, therefore, the Settings column
+     * in the simulati folder can be empty. (the Settings column must be presented, or else an error will occur).
+     * Users can specify the start and the end time of the video in seconds in "StartTime" and "EndTime" columns.
+     * If "StartTime" is not specify, the video will start from the beginning.
+     * If "EndTime" is not specify, the video will play until the end.
+     * For example, the "StartTime" is 10 and "EndTime" is 20, the video will play from 10 seconds to 20 seconds.
      **************************************************************************/
     
     
@@ -75,10 +81,6 @@
     
 ?>
 
-<style>
-    .ytplayer {pointer-events: none;}
-</style>
-
 <div>
     <div id="player"></div>
 </div>
@@ -90,9 +92,6 @@
 </div>
 
 <script>
-    // set background color of recall question section to white
-    // document.getElementById("recallQ").style.background-color = "white";
-
     var player;
     var submitOnDone       = <?= $submitOnDone       ? 'true' : 'false' ?>;
     var preventEarlySubmit = <?= $preventEarlySubmit ? 'true' : 'false' ?>;
